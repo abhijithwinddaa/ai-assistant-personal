@@ -3,6 +3,7 @@
 A production-ready **Retrieval-Augmented Generation (RAG)** chatbot application that combines document retrieval with AI language models for accurate, context-aware answers.
 
 ## Table of Contents
+
 - [Features](#features)
 - [Project Architecture](#project-architecture)
 - [Prerequisites](#prerequisites)
@@ -19,11 +20,17 @@ A production-ready **Retrieval-Augmented Generation (RAG)** chatbot application 
 ## Features
 
 ✅ **PDF Document Indexing** - Automatically extract and chunk PDF documents
+
 ✅ **Vector Embeddings** - Azure OpenAI's text-embedding-3-small (512 dimensions)
+
 ✅ **Vector Database** - Pinecone for fast similarity search
+
 ✅ **RAG Pipeline** - Retrieval + LLM for accurate answers
+
 ✅ **Free AI Model** - Groq's Llama 3.3 70B for responses
+
 ✅ **Interactive CLI** - Chat interface with `/bye` to exit
+
 ✅ **Production Ready** - Easy to integrate into existing apps
 
 ---
@@ -45,6 +52,7 @@ AI Generated Answer
 ```
 
 ### Tech Stack
+
 - **Embeddings**: Azure OpenAI (text-embedding-3-small)
 - **Vector Database**: Pinecone
 - **LLM**: Groq (Llama 3.3 70B)
@@ -90,6 +98,7 @@ This installs all required packages:
 ### Step 3: Place Your PDF Document
 
 Place your PDF document in the project root:
+
 ```
 f:\FullStack Projects\company-chatbot\cg-internal-docs.pdf
 ```
@@ -98,7 +107,7 @@ f:\FullStack Projects\company-chatbot\cg-internal-docs.pdf
 
 ## API Keys & Configuration
 
-### 1. **Azure OpenAI API Key**
+### 1. Azure OpenAI API Key
 
 **What it does**: Converts text into 512-dimensional vectors
 
@@ -112,6 +121,7 @@ f:\FullStack Projects\company-chatbot\cg-internal-docs.pdf
    - Deployment Name
 
 **In `.env`**:
+
 ```dotenv
 AZURE_OPENAI_KEY=your_key_here
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
@@ -120,7 +130,7 @@ AZURE_OPENAI_DEPLOYMENT=text-embedding-3-small
 
 ---
 
-### 2. **Pinecone API Key & Index**
+### 2. Pinecone API Key & Index
 
 **What it does**: Stores and searches vector embeddings
 
@@ -134,13 +144,16 @@ AZURE_OPENAI_DEPLOYMENT=text-embedding-3-small
 3. Copy your **API Key** from dashboard
 
 **⚠️ Important - Dimension Matching**:
+
 ```
 text-embedding-3-small → 512 dimensions
 text-embedding-3-large → 3072 dimensions
 ```
+
 Make sure your Pinecone index dimensions match your embedding model!
 
 **In `.env`**:
+
 ```dotenv
 PINECONE_API_KEY=pcsk_xxxxxx
 PINECONE_INDEX_NAME=company-chatbot-index
@@ -148,7 +161,7 @@ PINECONE_INDEX_NAME=company-chatbot-index
 
 ---
 
-### 3. **Groq API Key**
+### 3. Groq API Key
 
 **What it does**: Provides free, fast LLM responses
 
@@ -159,6 +172,7 @@ PINECONE_INDEX_NAME=company-chatbot-index
 4. Copy the key
 
 **In `.env`**:
+
 ```dotenv
 GROQ_API_KEY=gsk_xxxxxx
 ```
@@ -215,6 +229,7 @@ npm start
 ```
 
 Or:
+
 ```bash
 npm run dev
 ```
@@ -347,29 +362,36 @@ const askQuestion = async (question) => {
 ## Troubleshooting
 
 ### ❌ "Cannot find module @langchain/core/messages"
+
 **Solution**: Update dependencies
+
 ```bash
 npm install @langchain/core@latest --legacy-peer-deps
 ```
 
 ### ❌ "PineconeNotFoundError: HTTP 404"
+
 **Solution**: Check your `.env`
 - Verify `PINECONE_INDEX_NAME` matches your actual index name
 - Make sure index exists in Pinecone console
 
 ### ❌ "Dimensions mismatch: Expected 512, got 1536"
+
 **Solution**: Recreate your Pinecone index with dimensions: `512`
 - Delete current index
 - Create new with: 512 dimensions, cosine metric
 
 ### ❌ "PDF not found"
+
 **Solution**: Place PDF in project root
+
 ```
 f:\FullStack Projects\company-chatbot\cg-internal-docs.pdf
 ```
 
 ### ❌ "API Key invalid"
-**Solution**: 
+
+**Solution**:
 - Copy full key from console (no extra spaces)
 - Check if key is still active
 - Regenerate new key if needed
@@ -434,11 +456,12 @@ const textSplitter = new RecursiveCharacterTextSplitter({
 
 ## Security Notes
 
-⚠️ **IMPORTANT**: 
+⚠️ **IMPORTANT**:
 - Never commit `.env` file to Git
 - Rotate API keys periodically
 - Use environment variables in production
 - Add `.env` to `.gitignore`:
+
 ```
 .env
 node_modules/
@@ -463,5 +486,3 @@ For issues or questions:
 ---
 
 **Happy Chatting! 🤖**
-#   a i - a s s i s t a n t - p e r s o n a l  
- 
